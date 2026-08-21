@@ -185,8 +185,11 @@ export const draw = {
 	"draw.doubleClickAction.fixedToScreen": "固定到屏幕",
 	"draw.doubleClickAction.none": "无",
 	"draw.copyImageFileToClipboard": "复制图片文件到剪贴板",
+	"draw.copyImageFileToClipboard.mode": "复制内容",
+	"draw.copyImageFileToClipboard.mode.file": "文件",
+	"draw.copyImageFileToClipboard.mode.path": "路径",
 	"draw.copyImageFileToClipboard.tip":
-		"复制截图时先将图片写入到文件然后复制文件路径到剪贴板，开启该选项后默认启用“复制后自动保存”。目前仅支持保存普通截图",
+		"复制截图时先将图片写入到文件，然后按所选方式复制到剪贴板：文件为复制文件，路径为复制文件的绝对路径。开启该选项后默认启用“复制后自动保存”。目前仅支持保存普通截图",
 	"draw.cloudSaveUrlFormat": "云端链接格式",
 	"draw.cloudSaveUrlFormat.origin": "原始链接",
 	"draw.cloudSaveUrlFormat.markdown": "Markdown 链接",

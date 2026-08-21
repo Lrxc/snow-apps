@@ -164,6 +164,11 @@ export enum DoubleClickAction {
 	None = "none",
 }
 
+export enum CopyImageFileToClipboardMode {
+	File = "file",
+	Path = "path",
+}
+
 export enum ExtraToolList {
 	None = 0,
 	ScanQrcode = 1,
@@ -419,6 +424,8 @@ export type AppSettingsData = {
 		doubleClickAction: DoubleClickAction;
 		/** 复制图片文件到剪贴板 */
 		copyImageFileToClipboard: boolean;
+		/** 复制图片文件到剪贴板的方式 */
+		copyImageFileToClipboardMode: CopyImageFileToClipboardMode;
 		/** 保存到云端 */
 		saveToCloud: boolean;
 		/** 云端链接格式 */

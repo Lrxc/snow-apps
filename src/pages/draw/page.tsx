@@ -57,7 +57,11 @@ import {
 import { sendErrorMessage } from "@/functions/sendMessage";
 import { withStatePublisher } from "@/hooks/useStatePublisher";
 import { useStateSubscriber } from "@/hooks/useStateSubscriber";
-import { AppSettingsGroup, DoubleClickAction } from "@/types/appSettings";
+import {
+	AppSettingsGroup,
+	CopyImageFileToClipboardMode,
+	DoubleClickAction,
+} from "@/types/appSettings";
 import {
 	type ElementRect,
 	type ImageBuffer,
@@ -1098,6 +1102,9 @@ const DrawPageCore: React.FC<{
 		const enableCopyImageFileToClipboard =
 			getAppSettings()[AppSettingsGroup.FunctionScreenshot]
 				.copyImageFileToClipboard;
+		const copyImageFileToClipboardMode =
+			getAppSettings()[AppSettingsGroup.FunctionScreenshot]
+				.copyImageFileToClipboardMode;
 
 		if (getDrawState() === DrawState.ScrollScreenshot) {
 			const scrollScreenshotSize = await scrollScreenshotGetSize();
@@ -1261,7 +1268,18 @@ const DrawPageCore: React.FC<{
 						undefined,
 						imagePath,
 					);
-					await writeFilePathToClipboard(imagePath.filePath);
+					if (enableCopyImageFileToClipboard) {
+						if (
+							copyImageFileToClipboardMode ===
+							CopyImageFileToClipboardMode.Path
+						) {
+							await writeTextToClipboard(imagePath.filePath);
+						} else {
+							await writeFilePathToClipboard(imagePath.filePath);
+						}
+					} else {
+						await writeFilePathToClipboard(imagePath.filePath);
+					}
 				}
 			}
 		}

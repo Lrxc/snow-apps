@@ -64,6 +64,7 @@ import {
 	AppSettingsGroup,
 	CloudSaveUrlFormat,
 	CloudSaveUrlType,
+	CopyImageFileToClipboardMode,
 	DoubleClickAction,
 	GifFormat,
 	KeyDisplayDirection,
@@ -711,6 +712,23 @@ export const FunctionSettingsPage = () => {
 		];
 	}, [intl]);
 
+	const copyImageFileToClipboardModeOptions = useMemo(() => {
+		return [
+			{
+				label: intl.formatMessage({
+					id: "draw.copyImageFileToClipboard.mode.file",
+				}),
+				value: CopyImageFileToClipboardMode.File,
+			},
+			{
+				label: intl.formatMessage({
+					id: "draw.copyImageFileToClipboard.mode.path",
+				}),
+				value: CopyImageFileToClipboardMode.Path,
+			},
+		];
+	}, [intl]);
+
 	return (
 		<ContentWrap>
 			<GroupTitle
@@ -882,6 +900,29 @@ export const FunctionSettingsPage = () => {
 							/>
 						</Col>
 					</Row>
+
+					<ProFormDependency<{ copyImageFileToClipboard: boolean }> name={["copyImageFileToClipboard"]}>
+						{({ copyImageFileToClipboard }) => {
+							if (!copyImageFileToClipboard) {
+								return null;
+							}
+
+							return (
+								<Row gutter={token.marginLG}>
+									<Col span={12}>
+										<ProFormSelect
+											name="copyImageFileToClipboardMode"
+											layout="horizontal"
+											label={
+												<FormattedMessage id="draw.copyImageFileToClipboard.mode" />
+											}
+											options={copyImageFileToClipboardModeOptions}
+										/>
+									</Col>
+								</Row>
+							);
+						}}
+					</ProFormDependency>
 
 					<Row gutter={token.marginLG}>
 						<Col span={12}>

@@ -43,6 +43,7 @@ import {
 	AppSettingsTheme,
 	type CloudSaveUrlFormat,
 	CloudSaveUrlType,
+	type CopyImageFileToClipboardMode,
 	type DoubleClickAction,
 	ExtraToolList,
 	type HdrColorAlgorithm,
@@ -947,6 +948,11 @@ const AppSettingsContextProviderCore: React.FC<{
 							? newSettings.copyImageFileToClipboard
 							: (prevSettings?.copyImageFileToClipboard ??
 								defaultAppSettingsData[group].copyImageFileToClipboard),
+					copyImageFileToClipboardMode:
+						typeof newSettings?.copyImageFileToClipboardMode === "string"
+							? (newSettings.copyImageFileToClipboardMode as CopyImageFileToClipboardMode)
+							: (prevSettings?.copyImageFileToClipboardMode ??
+								defaultAppSettingsData[group].copyImageFileToClipboardMode),
 					saveToCloud:
 						typeof newSettings?.saveToCloud === "boolean"
 							? newSettings.saveToCloud
