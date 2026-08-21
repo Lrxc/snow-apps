@@ -857,20 +857,35 @@ export const FunctionSettingsPage = () => {
 
 					<Row gutter={token.marginLG}>
 						<Col span={12}>
-							<ProFormSwitch
-								name="copyImageFileToClipboard"
-								layout="horizontal"
-								label={
-									<IconLabel
-										label={
-											<FormattedMessage id="draw.copyImageFileToClipboard" />
-										}
-										tooltipTitle={
-											<FormattedMessage id="draw.copyImageFileToClipboard.tip" />
-										}
-									/>
-								}
-							/>
+							<Flex align="center" gap={token.marginSM}>
+								<ProFormSwitch
+									name="copyImageFileToClipboard"
+									layout="horizontal"
+									label={
+										<IconLabel
+											label={
+												<FormattedMessage id="draw.copyImageFileToClipboard" />
+											}
+											tooltipTitle={
+												<FormattedMessage id="draw.copyImageFileToClipboard.tip" />
+											}
+										/>
+									}
+									style={{ marginBottom: 0 }}
+								/>
+								<ProFormDependency<{ copyImageFileToClipboard: boolean }> name={["copyImageFileToClipboard"]}>
+									{({ copyImageFileToClipboard }) =>
+										copyImageFileToClipboard ? (
+											<ProFormSelect
+												name="copyImageFileToClipboardMode"
+												options={copyImageFileToClipboardModeOptions}
+												fieldProps={{ style: { minWidth: 120 } }}
+												style={{ marginBottom: 0 }}
+											/>
+										) : null
+									}
+								</ProFormDependency>
+							</Flex>
 						</Col>
 
 						<Col span={12}>
@@ -900,29 +915,6 @@ export const FunctionSettingsPage = () => {
 							/>
 						</Col>
 					</Row>
-
-					<ProFormDependency<{ copyImageFileToClipboard: boolean }> name={["copyImageFileToClipboard"]}>
-						{({ copyImageFileToClipboard }) => {
-							if (!copyImageFileToClipboard) {
-								return null;
-							}
-
-							return (
-								<Row gutter={token.marginLG}>
-									<Col span={12}>
-										<ProFormSelect
-											name="copyImageFileToClipboardMode"
-											layout="horizontal"
-											label={
-												<FormattedMessage id="draw.copyImageFileToClipboard.mode" />
-											}
-											options={copyImageFileToClipboardModeOptions}
-										/>
-									</Col>
-								</Row>
-							);
-						}}
-					</ProFormDependency>
 
 					<Row gutter={token.marginLG}>
 						<Col span={12}>
